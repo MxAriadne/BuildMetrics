@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Build Metrics</title>
+    <link href="https://cdn.jsdelivr.net/gh/tofsjonas/sortable@latest/dist/sortable.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/tofsjonas/sortable@latest/dist/sortable.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<h1>Build Metrics</h1>
+
+<div class="parent">
+    <div class="div1"><h3><a href="index.html">Desktop Processors</a></h3></div>
+    <div class="div2"><h3><a href="gpus.html">Graphics Cards</a></h3></div>
+    <div class="div3"><h3><a href="mobile.html">Mobile Chipsets</a></h3></div>
+</div>
+
+<p>Scores based on <a href="https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html">TomsHardware.com</a></p>
+
+<table class="sortable">
+    <thead>
+    <tr>
+        <th>Component</th>
+        <th>Average FPS (1080p Medium)</th>
+        <th>Average FPS (1080p Ultra)</th>
+        <th>Average FPS (1440p Ultra)</th>
+        <th>Average FPS (4K Ultra)</th>
+    </tr>
+    </thead>
+    <tbody id="builds"></tbody>
+</table>
+
+<script>
+    // Load the CSV file and process it
+    $(document).ready(function () {
+        $.ajax({
+            url: "/assets/gpu.csv",
+            dataType: "text",
+            success: function (data) {
+                let csvData = $.csv.toArrays(data); // Parse CSV data
+                csvData.forEach(row => {
+                    $("#builds").append(`<tr>
+                                            <td style="color: white">${row[0].replace('fps', '')}</td>
+                                            <td style="color: white">${row[2].replace('fps', '')}</td>
+                                            <td style="color: white">${row[1].replace('fps', '')}</td>
+                                            <td style="color: white">${row[3].replace('fps', '')}</td>
+                                            <td style="color: white">${row[4].replace('fps', '')}</td>
+                                        </tr>`);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Failed to load the CSV file:", error);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
