@@ -22,13 +22,13 @@
     <div class="div4"><h3><a href="gpus-mobile.html">ARM GPU<br>(Mobile Graphic Chipsets)</a></h3></div>
 </div>
 
-<p>Scores based on NotebookCheck.net</p>
+<p>Scores based on <a href="https://gfxbench.com/result.jsp">GFXBench.com</a></p>
 
 <table class="sortable">
     <thead>
     <tr>
         <th>Component</th>
-        <th>Performance Score</th>
+        <th>GFXBench Manhattan (Median Scores, 1080p, OpenGL)</th>
     </tr>
     </thead>
     <tbody id="builds"></tbody>
@@ -38,7 +38,7 @@
     // Load the CSV file and process it
     $(document).ready(function () {
         $.ajax({
-            url: "mobile.csv",
+            url: "gpu-mobile.csv",
             dataType: "text",
             success: function (data) {
                 let csvData = $.csv.toArrays(data); // Parse CSV data
