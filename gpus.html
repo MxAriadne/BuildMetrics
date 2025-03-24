@@ -22,16 +22,17 @@
     <div class="div4"><h3><a href="gpus-mobile.html">ARM GPU<br>(Mobile Graphic Chipsets)</a></h3></div>
 </div>
 
-<p>Scores based on <a href="https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html">TomsHardware.com</a></p>
+<p>Scores based on <a href="https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html">TomsHardware.com</a> as well as <a href="https://gfxbench.com/">GFXBench</a></p>
 
 <table class="sortable">
     <thead>
     <tr>
         <th>Component</th>
-        <th>Average FPS (1080p Medium)</th>
-        <th>Average FPS (1080p Ultra)</th>
-        <th>Average FPS (1440p Ultra)</th>
-        <th>Average FPS (4K Ultra)</th>
+        <!--<th>Average FPS Raster (1080p Medium)</th>-->
+        <th>Average FPS (1080p Ultra) (Raster)</th>
+        <th>Average FPS (1440p Ultra) (Raster)</th>
+        <th>Average FPS (4K Ultra) (Raster)</th>
+        <th>GFXBench Aztec (4K Ultra) (Compute)</th>
     </tr>
     </thead>
     <tbody id="builds"></tbody>
@@ -48,10 +49,11 @@
                 csvData.forEach(row => {
                     $("#builds").append(`<tr>
                                             <td style="color: white">${row[0].replace('fps', '')}</td>
-                                            <td style="color: white">${row[2].replace('fps', '')}</td>
+                                            <!--<td style="color: white">${row[2].replace('fps', '')}</td>-->
                                             <td style="color: white">${row[1].replace('fps', '')}</td>
                                             <td style="color: white">${row[3].replace('fps', '')}</td>
                                             <td style="color: white">${row[4].replace('fps', '')}</td>
+                                            <td style="color: white">${row[5].replace('fps', '')}</td>
                                         </tr>`);
                 });
             },
